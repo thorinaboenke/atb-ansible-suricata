@@ -1,26 +1,24 @@
-
-- name: Add suricata ppa repo
-  apt_repository:
-    filename: suricata_repo
-    repo: "ppa:oisf/suricata-stable"
-    state: present
-    update_cache: true
-  when: suricata_use_ppa|bool
-
 - name: Install suricata
   apt:
     name: suricata
     state: present
 
-- name: Add custom rule files
-  copy:
-    src: "{{ item }}"
-    dest: "{{ suricata_rule_path }}/{{ item | basename }}"
-    mode: "0644"
-    owner: root
-    group: root
-  loop: "{{ suricata_extra_rule_files }}"
-  notify: restart suricata
+- name: Install suricata-update
+  apt:
+    name: suricata-update
+    state: present
+
+- name: Suricata-Update enable sources
+  ansible.builtin.shell:
+    creates: /var/lib/suricata/rules/suricata.rules
+    cmd: "suricata-update update-sources && suricata-update enable-source {{ item }}"
+  loop:
+    - et/open
+    - tgreen/hunting
+    - malsilo/win-malware
+    - stamus/lateral
+  notify:
+    - suricata-update
 
 - name: Configure default file
   template:

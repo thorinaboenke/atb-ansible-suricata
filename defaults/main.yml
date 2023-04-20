@@ -3,8 +3,9 @@
 suricata_use_ppa: no
 
 suricata_default_tpl: "default_suricata.j2"
-suricata_interface: "eth0"
-suricata_listenmode: nfqueue
+suricata_interface: ["eth0"]
+
+suricata_listenmode: af-packet
 suricata_tpl: "suricata.yaml.j2"
 
 suricata_pcap_log: yes
