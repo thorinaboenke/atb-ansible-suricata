@@ -21,7 +21,8 @@ suricata_tpl: "suricata.yaml.j2"
 | ------------------------------ | ------------ | ----------------------------------------- | -------------------------------------------------------- |
 | suricata_tpl                   | path         | suricata.yaml.j2                          | The suricata YAMl config template to be used             |
 | suricata_default_tpl           |              | default_suricata.j2                       | The suricata default file template to be used            |
-| suricata_interface             | iface        | eth0                                      | The interface suricata should monitor                    |
+| suricata_listenmode            | string       | af-packet                                 | Run suricata in promisous or af-packet or inline         |
+| suricata_interface             | list[iface]  | ["eth0"]                                  | The interface suricata should monitor                    |
 | suricata_pcap_log              | bool         | true                                      | If suricata should save the packets in the pcap.log file |
 | suricata_home_nets             | list[cidr]   | [192.168.0.0/16,10.0.0.0/8,172.16.0.0/12] | List of home nets for this host                          |
 | suricata_external_net          | string       | !$HOME_NET                                | The external net address group                           |
