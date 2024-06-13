@@ -41,7 +41,7 @@
 - name: Configure surciata-threshold
   template:
           src: "{{ suricata_threshold_tpl }}"
-          dest: "/etc/suricata/threshold.config"
+          dest: "{{ suricata_threshold_file }}"
           mode: "0644"
           owner: "root"
           group: "root"

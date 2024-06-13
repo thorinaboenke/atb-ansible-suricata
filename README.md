@@ -21,6 +21,7 @@ suricata_tpl: "suricata.yaml.j2"
 | ------------------------------ | ------------ | ----------------------------------------- | -------------------------------------------------------- |
 | suricata_tpl                   | path         | suricata.yaml.j2                          | The suricata YAMl config template to be used             |
 | suricata_default_tpl           |              | default_suricata.j2                       | The suricata default file template to be used            |
+| suricata_threshold_tpl         | string       | threshold.config.j2                       | The template for the threshold.config                    |
 | suricata_listenmode            | string       | af-packet                                 | Run suricata in promisous or af-packet or inline         |
 | suricata_interface             | list[iface]  | ["eth0"]                                  | The interface suricata should monitor                    |
 | suricata_pcap_log              | bool         | true                                      | If suricata should save the packets in the pcap.log file |
@@ -28,14 +29,14 @@ suricata_tpl: "suricata.yaml.j2"
 | suricata_external_net          | string       | !$HOME_NET                                | The external net address group                           |
 | suricata_address_groups        | dict[string] | \*1                                       | Dictionary containing address group definitions          |
 | suricata_port_groups           | dict[string] | \*2                                       | Dictionary containing port group definitions             |
-| suricata_rule_path             | path         | /etc/suricata/rules                       | The path to the rules directory                          |
-| suricata_rule_files            | list[string] |                                           | The rule files suricata should use                       |
+| suricata_rule_path             | path         | /var/lib/suricata/rules                   | The path to the rules directory                          |
+| suricata_rule_files            | list[string] | ["suricata.rules"]                        | The rule files suricata should use                       |
 | suricata_extra_rule_files      | list[path]   | []                                        | List of additional rule files to install on the host     |
 | suricata_classification_file   | path         | /etc/suricata/classification.config       | The path to the classification file                      |
 | suricata_reference_config_file | path         | /etc/suricata/reference.config            | The path to the reference config file                    |
-| suricata_threshold_file        | path         |                                           | The path to the threshold config file                    |
+| suricata_threshold_file        | path         | /etc/suricata/threshold.config            | The path to the threshold config file                    |
 | suricata_log_dir               | path         | /var/log/suricata/                        | The default suricata log directory                       |
-|                                |              |                                           |                                                          |
+| suricata_threshold             | list[dict]   | []                                        | The rules for the treshold.config                        |
 
 ### \*1
 
@@ -75,4 +76,8 @@ suricata_port_groups:
     - suricata
   vars:
     suricata_interface: "enp0s3"
+    suricata_threshold:
+      - { rule: 'threshold gen_id 0, sig_id 0, type threshold, track by_src, count 10, seconds 10', comment: 'Some important rule' }
+      - { rule: 'suppress gen_id 1, sig_id 2009557, track by_src, ip 217.110.97.128/25' }
+      - { rule: 'suppress gen_id 1, sig_id 2012086, track by_src, ip 217.110.97.128/25 }
 ```

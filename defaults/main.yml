@@ -64,7 +64,7 @@ suricata_port_groups:
 suricata_rule_path: /var/lib/suricata/rules
 suricata_classification_file: /etc/suricata/classification.config
 suricata_reference_config_file: /etc/suricata/reference.config
-# suricata_threshold_file: /etc/suricata/threshold.config
+suricata_threshold_file: /etc/suricata/threshold.config
 
 suricata_log_dir: /var/log/suricata
 suricata_afpack_defrag: "no"
