@@ -29,6 +29,11 @@ suricata_pfring_bpf_filter: "{{ suricata_bpf_filter }}"
 #
 suricata_threshold: []
 
+suricata_update_rules:
+  - et/open
+  - tgreen/hunting
+  - malsilo/win-malware
+  - stamus/lateral
 
 # address and port groups
 # -------------------------------------------

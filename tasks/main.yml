@@ -12,11 +12,7 @@
   ansible.builtin.shell:
     creates: /var/lib/suricata/rules/suricata.rules
     cmd: "suricata-update update-sources && suricata-update enable-source {{ item }}"
-  loop:
-    - et/open
-    - tgreen/hunting
-    - malsilo/win-malware
-    - stamus/lateral
+  loop: "{{ suricata_update_rules }}"
   notify:
     - suricata-update
 

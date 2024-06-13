@@ -37,6 +37,7 @@ suricata_tpl: "suricata.yaml.j2"
 | suricata_threshold_file        | path         | /etc/suricata/threshold.config            | The path to the threshold config file                    |
 | suricata_log_dir               | path         | /var/log/suricata/                        | The default suricata log directory                       |
 | suricata_threshold             | list[dict]   | []                                        | The rules for the treshold.config                        |
+| suricata_update_rules          | list[string] |                                           | Suricatal
 
 ### \*1
 
