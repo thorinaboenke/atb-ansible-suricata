@@ -3,6 +3,7 @@
 suricata_use_ppa: no
 
 suricata_default_tpl: "default_suricata.j2"
+suricata_threshold_tpl: "threshold.config.j2"
 suricata_interface: ["eth0"]
 
 suricata_listenmode: af-packet
@@ -20,6 +21,13 @@ suricata_af_packet_bpf_filter: "{{ suricata_bpf_filter }}"
 suricata_pcap_bpf_filter: "{{ suricata_bpf_filter }}"
 suricata_netmap_bpf_filter: "{{ suricata_bpf_filter }}"
 suricata_pfring_bpf_filter: "{{ suricata_bpf_filter }}"
+
+# threshold rules
+#
+# example:
+# - { rule: 'threshold gen_id 0, sig_id 0, type threshold, track by_src, count 10, seconds 10', comment: 'Some important rule' }
+#
+suricata_threshold: []
 
 
 # address and port groups

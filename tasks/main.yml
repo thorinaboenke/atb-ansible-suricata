@@ -38,6 +38,16 @@
           group: "root"
   notify: restart suricata
 
+- name: Configure surciata-threshold
+  template:
+          src: "{{ suricata_threshold_tpl }}"
+          dest: "/etc/suricata/threshold.config"
+          mode: "0644"
+          owner: "root"
+          group: "root"
+  notify: restart suricata
+
+
 - name: Start service suricata, if not started
   service:
     name: suricata
