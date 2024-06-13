@@ -80,5 +80,5 @@ suricata_port_groups:
     suricata_threshold:
       - { rule: 'threshold gen_id 0, sig_id 0, type threshold, track by_src, count 10, seconds 10', comment: 'Some important rule' }
       - { rule: 'suppress gen_id 1, sig_id 2009557, track by_src, ip 217.110.97.128/25' }
-      - { rule: 'suppress gen_id 1, sig_id 2012086, track by_src, ip 217.110.97.128/25 }
+      - { rule: 'suppress gen_id 1, sig_id 2012086, track by_src, ip 217.110.97.128/25' }
 ```
