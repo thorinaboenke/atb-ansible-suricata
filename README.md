@@ -1,11 +1,11 @@
 # Ansible Role: suricata
 
 Ansible Role that installs an configures [suricata](https://suricata.io/)
+It uses suricata-update to manage the rules
 
 ## Requirements
 
-Debian Stretch or newer
-Ubuntu Bionic or newer
+Debian or Ubuntu. It was tested with Ubuntu 22.04
 
 ## Defaults
 
